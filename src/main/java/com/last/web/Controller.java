@@ -136,5 +136,8 @@ public class Controller {
     public Map<String, Object> getDestinationDetails(@RequestParam String uri) {
         return rdfService.getDestinationDetails(uri);
     }
-
+    @GetMapping("/restaurants/location")
+    public Map<String, String> getRestaurantLocation(@RequestParam String uri) {
+        return rdfService.getRestaurantLocation(uri);
+    }
 }

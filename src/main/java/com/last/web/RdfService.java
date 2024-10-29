@@ -511,6 +511,35 @@ public class RdfService {
 
         return details;
     }
+    public Map<String, String> getRestaurantLocation(String restaurantUri) {
+        Model model = ModelFactory.createDefaultModel();
+        Map<String, String> locationDetails = new HashMap<>();
+
+        try (InputStream inputStream = new FileInputStream(RDF_FILE_PATH)) {
+            model.read(inputStream, null);
+
+            // SPARQL query to retrieve the location (destination) of the restaurant
+            String queryString = "PREFIX ont: <http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#> " +
+                    "SELECT ?destination ?destinationName WHERE { " +
+                    "<" + restaurantUri + "> ont:locatedIn ?destination . " +
+                    "?destination ont:name ?destinationName ." +
+                    "}";
+
+            Query query = QueryFactory.create(queryString);
+            try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+                ResultSet results = qexec.execSelect();
+                if (results.hasNext()) {
+                    QuerySolution soln = results.nextSolution();
+                    locationDetails.put("destinationUri", soln.getResource("destination").getURI());
+                    locationDetails.put("destinationName", soln.getLiteral("destinationName").getString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return locationDetails;
+    }
 
 }
 
