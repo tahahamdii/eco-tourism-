@@ -293,4 +293,120 @@
     <untitled-ontology-4:locatedIn rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination2"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#Restaurant"/>
   </owl:NamedIndividual>
+  <!-- Additional Users -->
+    <untitled-ontology-4:User rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#james">
+      <untitled-ontology-4:name>James</untitled-ontology-4:name>
+      <untitled-ontology-4:location>USA</untitled-ontology-4:location>
+      <untitled-ontology-4:ecoAwarenessLevel>medium</untitled-ontology-4:ecoAwarenessLevel>
+      <untitled-ontology-4:budget rdf:datatype="http://www.w3.org/2001/XMLSchema#float">800.0</untitled-ontology-4:budget>
+      <untitled-ontology-4:preferences>outdoor activities, vegan food</untitled-ontology-4:preferences>
+      <untitled-ontology-4:hasDestination rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination4"/>
+      <untitled-ontology-4:hasRestaurant rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant3"/>
+      <untitled-ontology-4:hasActivity rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoActivity3"/>
+      <untitled-ontology-4:attendsEvent rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent3"/>
+      <untitled-ontology-4:UsesTransportation rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation3"/>
+    </untitled-ontology-4:User>
+
+    <!-- More Users: Rachel, Alex, and Sarah -->
+
+    <untitled-ontology-4:User rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#rachel">
+      <untitled-ontology-4:name>Rachel</untitled-ontology-4:name>
+      <untitled-ontology-4:location>UK</untitled-ontology-4:location>
+      <untitled-ontology-4:ecoAwarenessLevel>high</untitled-ontology-4:ecoAwarenessLevel>
+      <untitled-ontology-4:budget rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1200.0</untitled-ontology-4:budget>
+      <untitled-ontology-4:preferences>mountain hiking, organic meals</untitled-ontology-4:preferences>
+      <untitled-ontology-4:hasDestination rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination5"/>
+      <untitled-ontology-4:hasRestaurant rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant4"/>
+      <untitled-ontology-4:hasActivity rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoActivity4"/>
+      <untitled-ontology-4:attendsEvent rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent4"/>
+      <untitled-ontology-4:UsesTransportation rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation4"/>
+    </untitled-ontology-4:User>
+
+    <!-- Additional Destinations -->
+    <untitled-ontology-4:Destination rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination4">
+      <untitled-ontology-4:name>Lakeview Park</untitled-ontology-4:name>
+      <untitled-ontology-4:season>spring</untitled-ontology-4:season>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.8</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:popularity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</untitled-ontology-4:popularity>
+      <untitled-ontology-4:holdsEvent rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent3"/>
+      <untitled-ontology-4:hasTransportation rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation3"/>
+      <untitled-ontology-4:hasRestaurant rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant3"/>
+      <untitled-ontology-4:offersActivity rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoActivity3"/>
+    </untitled-ontology-4:Destination>
+
+    <!-- More Destinations: Eco Resort, Sandy Beaches, and Mountain Peak -->
+
+    <untitled-ontology-4:Destination rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination5">
+      <untitled-ontology-4:name>Eco Resort</untitled-ontology-4:name>
+      <untitled-ontology-4:season>winter</untitled-ontology-4:season>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.2</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:popularity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</untitled-ontology-4:popularity>
+      <untitled-ontology-4:holdsEvent rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent4"/>
+      <untitled-ontology-4:hasTransportation rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation4"/>
+      <untitled-ontology-4:hasRestaurant rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant4"/>
+      <untitled-ontology-4:offersActivity rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoActivity4"/>
+    </untitled-ontology-4:Destination>
+
+    <!-- Additional Events -->
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent3">
+      <untitled-ontology-4:name>Spring Fair</untitled-ontology-4:name>
+      <untitled-ontology-4:duration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</untitled-ontology-4:duration>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.2</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:type>fair</untitled-ontology-4:type>
+      <untitled-ontology-4:heldAt rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination4"/>
+      <untitled-ontology-4:usedBy rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#james"/>
+      <rdf:type rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#Event"/>
+    </owl:NamedIndividual>
+
+    <!-- More Events: Winter Festival, Beach Party, and Mountain Summit Celebration -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoEvent4">
+      <untitled-ontology-4:name>Winter Festival</untitled-ontology-4:name>
+      <untitled-ontology-4:duration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.5</untitled-ontology-4:duration>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.1</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:type>festival</untitled-ontology-4:type>
+      <untitled-ontology-4:heldAt rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination5"/>
+      <untitled-ontology-4:usedBy rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#rachel"/>
+      <rdf:type rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#Event"/>
+    </owl:NamedIndividual>
+
+    <!-- Additional Restaurants -->
+    <untitled-ontology-4:Restaurant rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant3">
+      <untitled-ontology-4:name>Green Diner</untitled-ontology-4:name>
+      <untitled-ontology-4:cuisineType>vegan</untitled-ontology-4:cuisineType>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.5</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:locatedIn rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination4"/>
+      <untitled-ontology-4:suitableFor rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#james"/>
+    </untitled-ontology-4:Restaurant>
+
+    <!-- More Restaurants: Eco Bistro, Coastal Grill, and Mountain Cafe -->
+
+    <untitled-ontology-4:Restaurant rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoRestaurant4">
+      <untitled-ontology-4:name>Eco Bistro</untitled-ontology-4:name>
+      <untitled-ontology-4:cuisineType>organic</untitled-ontology-4:cuisineType>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</untitled-ontology-4:impactScore>
+      <untitled-ontology-4:locatedIn rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoDestination5"/>
+      <untitled-ontology-4:suitableFor rdf:resource="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#rachel"/>
+    </untitled-ontology-4:Restaurant>
+
+    <!-- Additional Transportations -->
+    <untitled-ontology-4:Transportation rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation3">
+      <untitled-ontology-4:name>EcoVan</untitled-ontology-4:name>
+      <untitled-ontology-4:type>electric van</untitled-ontology-4:type>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</untitled-ontology-4:impactScore>
+    </untitled-ontology-4:Transportation>
+
+    <!-- More Transportations: Coastal Shuttle, Mountain Bus -->
+
+    <untitled-ontology-4:Transportation rdf:about="http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#ecoTransportation4">
+      <untitled-ontology-4:name>EcoTrain</untitled-ontology-4:name>
+      <untitled-ontology-4:type>train</untitled-ontology-4:type>
+      <untitled-ontology-4:ecoRating rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</untitled-ontology-4:ecoRating>
+      <untitled-ontology-4:impactScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.2</untitled-ontology-4:impactScore>
+    </untitled-ontology-4:Transportation>
 </rdf:RDF>
