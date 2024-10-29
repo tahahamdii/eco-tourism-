@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController("/api")
+@RestController()
 public class Controller {
 
     private final RdfService rdfService;
@@ -16,7 +17,7 @@ public class Controller {
         this.rdfService = rdfService;
     }
 
-    @GetMapping("/destinations/all")
+    @GetMapping("/destinations")
     public List<DestinationInfo> getDestinations() {
         return rdfService.getAllDestinations();
     }
@@ -124,4 +125,16 @@ public class Controller {
     public List<TransportationInfo> getTransportationByImpactScore(@RequestParam double maxImpactScore) {
         return rdfService.getTransportationByImpactScore(maxImpactScore);
     }
+
+    @GetMapping("/destinations/byEcoRatingAndSeason")
+    public List<DestinationInfo> getDestinationsByEcoRatingAndSeason(
+            @RequestParam double ecoRating,
+            @RequestParam String season) {
+        return rdfService.getDestinationsByEcoRatingAndSeason(ecoRating, season);
+    }
+    @GetMapping("/destinations/details")
+    public Map<String, Object> getDestinationDetails(@RequestParam String uri) {
+        return rdfService.getDestinationDetails(uri);
+    }
+
 }

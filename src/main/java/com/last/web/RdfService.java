@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RdfService {
@@ -88,6 +90,43 @@ public class RdfService {
                 "?destination ont:impactScore ?impactScore . " +
                 "FILTER (?impactScore <= " + maxImpactScore + ")" +
                 "}");
+    }
+
+    // Method to fetch destinations by ecoRating and season
+    public List<DestinationInfo> getDestinationsByEcoRatingAndSeason(double ecoRating, String season) {
+        List<DestinationInfo> destinations = new ArrayList<>();
+        Model model = ModelFactory.createDefaultModel();
+
+        try (InputStream inputStream = new FileInputStream(RDF_FILE_PATH)) {
+            model.read(inputStream, null);
+            String queryString = "PREFIX ont: <http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#> " +
+                    "SELECT ?destination ?name ?ecoRating ?season ?impactScore WHERE { " +
+                    "?destination a ont:Destination . " +
+                    "?destination ont:name ?name . " +
+                    "?destination ont:ecoRating ?ecoRating . " +
+                    "?destination ont:season ?season . " +
+                    "?destination ont:impactScore ?impactScore . " +
+                    "FILTER (?ecoRating >= " + ecoRating + " && ?season = \"" + season + "\")" +
+                    "}";
+
+            Query query = QueryFactory.create(queryString);
+            try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+                ResultSet results = qexec.execSelect();
+                while (results.hasNext()) {
+                    QuerySolution soln = results.nextSolution();
+                    String uri = soln.getResource("destination").getURI();
+                    String name = soln.getLiteral("name").getString();
+                    double destinationEcoRating = soln.getLiteral("ecoRating").getDouble();
+                    String destinationSeason = soln.getLiteral("season").getString();
+                    float impactScore = soln.getLiteral("impactScore").getFloat();
+                    destinations.add(new DestinationInfo(uri, name, destinationEcoRating, destinationSeason, impactScore));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return destinations;
     }
 
     // General query execution helper
@@ -437,6 +476,41 @@ public class RdfService {
         return transportations;
     }
 
+    // Method to fetch detailed information about a destination by URI
+    public Map<String, Object> getDestinationDetails(String destinationUri) {
+        Model model = ModelFactory.createDefaultModel();
+        Map<String, Object> details = new HashMap<>();
+
+        try (InputStream inputStream = new FileInputStream(RDF_FILE_PATH)) {
+            model.read(inputStream, null);
+
+            // SPARQL query to retrieve related entities with their names
+            String queryString = "PREFIX ont: <http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#> " +
+                    "SELECT ?event ?eventName ?activity ?activityName ?restaurant ?restaurantName ?transportation ?transportationName WHERE { " +
+                    "<" + destinationUri + "> ont:holdsEvent ?event . " +
+                    "OPTIONAL { ?event ont:name ?eventName } ." +
+                    "OPTIONAL { <" + destinationUri + "> ont:offersActivity ?activity . ?activity ont:name ?activityName } ." +
+                    "OPTIONAL { <" + destinationUri + "> ont:hasRestaurant ?restaurant . ?restaurant ont:name ?restaurantName } ." +
+                    "OPTIONAL { <" + destinationUri + "> ont:hasTransportation ?transportation . ?transportation ont:name ?transportationName } ." +
+                    "}";
+
+            Query query = QueryFactory.create(queryString);
+            try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+                ResultSet results = qexec.execSelect();
+                if (results.hasNext()) {
+                    QuerySolution soln = results.nextSolution();
+                    details.put("holdsEvent", soln.contains("eventName") ? soln.getLiteral("eventName").getString() : "Unnamed Event");
+                    details.put("offersActivity", soln.contains("activityName") ? soln.getLiteral("activityName").getString() : "Unnamed Activity");
+                    details.put("hasRestaurant", soln.contains("restaurantName") ? soln.getLiteral("restaurantName").getString() : "Unnamed Restaurant");
+                    details.put("hasTransportation", soln.contains("transportationName") ? soln.getLiteral("transportationName").getString() : "Unnamed Transportation");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return details;
+    }
 
 }
 
