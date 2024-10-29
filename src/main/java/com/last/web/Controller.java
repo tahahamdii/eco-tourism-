@@ -140,4 +140,10 @@ public class Controller {
     public Map<String, String> getRestaurantLocation(@RequestParam String uri) {
         return rdfService.getRestaurantLocation(uri);
     }
+
+    // Endpoint to get the location and participants of an event
+    @GetMapping("/events/details")
+    public Map<String, Object> getEventDetails(@RequestParam String uri) {
+        return rdfService.getEventDetails(uri);
+    }
 }

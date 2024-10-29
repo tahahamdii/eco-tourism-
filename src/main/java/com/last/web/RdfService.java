@@ -351,6 +351,53 @@ public class RdfService {
         return events;
     }
 
+    public Map<String, Object> getEventDetails(String eventUri) {
+        Model model = ModelFactory.createDefaultModel();
+        Map<String, Object> details = new HashMap<>();
+
+        try (InputStream inputStream = new FileInputStream(RDF_FILE_PATH)) {
+            model.read(inputStream, null);
+
+            // SPARQL query to retrieve the location and participants of the event
+            String queryString = "PREFIX ont: <http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#> " +
+                    "SELECT ?destination ?destinationName ?user ?userName WHERE { " +
+                    "<" + eventUri + "> ont:heldAt ?destination . " +
+                    "?destination ont:name ?destinationName . " +
+                    "OPTIONAL { <" + eventUri + "> ont:usedBy ?user . ?user ont:name ?userName } ." +
+                    "}";
+
+            Query query = QueryFactory.create(queryString);
+            try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+                ResultSet results = qexec.execSelect();
+
+                List<String> participants = new ArrayList<>();
+                if (results.hasNext()) {
+                    QuerySolution soln = results.nextSolution();
+                    details.put("heldAt", soln.contains("destinationName") ? soln.getLiteral("destinationName").getString() : "Unknown Location");
+                    details.put("destinationUri", soln.getResource("destination").getURI());
+
+                    if (soln.contains("userName")) {
+                        participants.add(soln.getLiteral("userName").getString());
+                    }
+
+                    // Add remaining participants from the result set
+                    while (results.hasNext()) {
+                        soln = results.nextSolution();
+                        if (soln.contains("userName")) {
+                            participants.add(soln.getLiteral("userName").getString());
+                        }
+                    }
+                }
+                details.put("participants", participants);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return details;
+    }
+
+
     public List<RestaurantInfo> getRestaurantsByCuisineType(String cuisineType) {
         String queryString = "PREFIX ont: <http://www.semanticweb.org/lenovo/ontologies/2024/9/untitled-ontology-4#> " +
                 "SELECT ?restaurant ?name ?ecoRating ?impactScore WHERE { " +
